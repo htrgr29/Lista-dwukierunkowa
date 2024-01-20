@@ -92,6 +92,13 @@ template<typename T>
 BiDirectionalList<T>& BiDirectionalList<T>::operator=(BiDirectionalList<T>&& obj)
 {
 	if (this != &obj) {
+
+		while (first) {
+			auto tmp = first->next;
+			first.reset();
+			first = tmp;
+		}
+
 		first = obj.first;
 		last = obj.last;
 		obj.first = nullptr;
@@ -109,6 +116,10 @@ BiDirectionalList<T>::~BiDirectionalList<T>()
 		first.reset();
 		first = tmp;
 	}
+
+	first = nullptr;
+	last = nullptr;
+
 }
 
 
@@ -145,6 +156,8 @@ void BiDirectionalList<T>::remove(shared_ptr<ListItem<T>> current)
 	if (current) {
 		current->next->prev = current->prev;
 		current->prev->next = current->next;
+		current->prev = nullptr;
+		current->next = nullptr;
 		current.reset();
 	};
 }
@@ -152,8 +165,9 @@ void BiDirectionalList<T>::remove(shared_ptr<ListItem<T>> current)
 template<typename T>
 shared_ptr<ListItem<T>> BiDirectionalList<T>::find(T key)
 {
+
 	auto tmp = first;
-	while (tmp->next) {
+	while (tmp) {
 		if (tmp->data == key) return tmp;
 		tmp = tmp->next;
 	};
@@ -166,7 +180,7 @@ void BiDirectionalList<T>::serialize(ofstream& out)
 {
 
 	auto tmp = first;
-	while (tmp->next) {
+	while (tmp) {
 		out.write((char*)&(tmp->data), sizeof(tmp->data));
 		tmp = tmp->next;
 	};
