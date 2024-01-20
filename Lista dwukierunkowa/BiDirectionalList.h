@@ -11,7 +11,7 @@ class BiDirectionalList // : public enable_shared_from_this<BiDirectionalList<T>
 {
 
 public:
-    shared_ptr<ListItem<T>> first, last; 
+	shared_ptr<ListItem<T>> first, last;
 	BiDirectionalList();
 	BiDirectionalList(const BiDirectionalList<T>& obj);
 	BiDirectionalList(BiDirectionalList<T>&& obj);
@@ -19,8 +19,8 @@ public:
 	BiDirectionalList<T>& operator=(BiDirectionalList<T>&& obj);
 	BiDirectionalList<T>& operator=(const BiDirectionalList<T>& obj);
 	virtual void insert(T item);
-    virtual void append(T item);
-    virtual void remove(shared_ptr<ListItem<T>> current);
+	virtual void append(T item);
+	virtual void remove(shared_ptr<ListItem<T>> current);
 	virtual shared_ptr<ListItem<T>> find(T key);
 	virtual void serialize(ofstream& out);
 	virtual void deserialize(ifstream& in);
@@ -32,8 +32,8 @@ public:
 template<typename T>
 BiDirectionalList<T>::BiDirectionalList()
 {
-		first = nullptr;
-        last = nullptr;
+	first = nullptr;
+	last = nullptr;
 }
 
 
@@ -115,7 +115,7 @@ BiDirectionalList<T>::~BiDirectionalList<T>()
 template<typename T>
 void BiDirectionalList<T>::insert(T item)
 {
-	shared_ptr<ListItem<T>> tmp( new ListItem<T>(item));
+	shared_ptr<ListItem<T>> tmp(new ListItem<T>(item));
 
 	tmp->next = first;
 	if (first) first->prev = tmp;
@@ -167,7 +167,7 @@ void BiDirectionalList<T>::serialize(ofstream& out)
 
 	auto tmp = first;
 	while (tmp->next) {
-		out.write((char *) &(tmp->data), sizeof(tmp->data));
+		out.write((char*)&(tmp->data), sizeof(tmp->data));
 		tmp = tmp->next;
 	};
 }
@@ -186,8 +186,7 @@ void BiDirectionalList<T>::deserialize(ifstream& in)
 	last = nullptr;
 
 	T data;
-	while (in.read((char *) &data, sizeof(data))) {
+	while (in.read((char*)&data, sizeof(data))) {
 		append(data);
 	};
 }
-

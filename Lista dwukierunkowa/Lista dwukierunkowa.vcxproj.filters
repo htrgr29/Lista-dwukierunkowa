@@ -18,39 +18,12 @@
     <ClCompile Include="Lista dwukierunkowa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BiDirectionalList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ListOfInts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ListItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DBList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BDListItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BDListItemInt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BiDirectionalList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ListItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DBList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BDListItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BDListItemInt.h">
+    <ClInclude Include="BiDirectionalList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
