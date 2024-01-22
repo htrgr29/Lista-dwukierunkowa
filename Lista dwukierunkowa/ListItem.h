@@ -96,7 +96,7 @@ template<typename T>
 shared_ptr<ListItem<T>> ListItem<T>::find(T key)
 {
 	shared_ptr<ListItem> tmp = first();
-	while (tmp->next) {
+	while (tmp) {
 		if (tmp->data == key) return tmp;
 		tmp = tmp->next;
 	};

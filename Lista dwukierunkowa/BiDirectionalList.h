@@ -24,6 +24,7 @@ public:
 	virtual shared_ptr<ListItem<T>> find(T key);
 	virtual void serialize(ofstream& out);
 	virtual void deserialize(ifstream& in);
+	virtual void print();
 };
 
 
@@ -154,8 +155,10 @@ template<typename T>
 void BiDirectionalList<T>::remove(shared_ptr<ListItem<T>> current)
 {
 	if (current) {
-		current->next->prev = current->prev;
-		current->prev->next = current->next;
+		if (current->next) current->next->prev = current->prev;
+		else last = current->prev;
+		if (current->prev) current->prev->next = current->next;
+		else first = current->next;
 		current->prev = nullptr;
 		current->next = nullptr;
 		current.reset();
@@ -203,4 +206,24 @@ void BiDirectionalList<T>::deserialize(ifstream& in)
 	while (in.read((char*)&data, sizeof(data))) {
 		append(data);
 	};
+}
+
+template<typename T>
+inline void BiDirectionalList<T>::print()
+{
+	//while (first) {
+	//	auto tmp = first->next;
+	//	cout << first->data << " ";
+	//	first.reset();
+	//	first = tmp;
+	//}
+
+	auto tmp = first;
+	while (tmp) {
+		cout << tmp->data << " ";
+		tmp = tmp->next;
+	}
+
+
+	cout << "\n";
 }
